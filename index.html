@@ -1,23 +1,92 @@
 <!DOCTYPE html>
 <html>
 
-<head></head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        table,
+        th,
+        td {
+            font: 17px Calibri;
+            border: solid 1px #DDD;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        th {
+            font-weight: bold;
+        }
+    </style>
+</head>
 
 <body>
-  <h1>E-BOOK MANAGEMENT</h1>
-  <form action="./displayTable.html">
-  <label>Book List:</label> 
-  <select id="book" name="book">
-      <option value="">==select==</option>
-    </select><br><br>
-    <p>OR</p><br><br>
-<h2>Search by title or authorName</h2>
+    <h1 class="text-center">E-BOOK MANAGEMENT</h1>
+    <!-- action="./displayTable.html" -->
+    <div class="container">
+    <form>
+        <label>Book List:</label>
+        <select id="book" name="book">
+            <option value="">==select==</option>
+        </select><br><br>
+        <p>OR</p><br><br>
+        <h2>Search by title or authorName</h2>
 
-    <input id="titleorAuthor">
-    <button type="submit" onclick="search();">Search</button>
-    
-    <button type="reset">Clear</button>
-</form>
+        <input id="titleorAuthor">
+        <button type="button" onclick="search();">Search</button>
+
+        <button type="reset">Clear</button>
+    </form>
+    </div>
+
+
+    <div class="container" id="myDIV">
+        <h1>TABLE</h1>
+        <table id="tableId">
+            <thead>
+                <th>check</th>
+                <th>authorName</th>
+                <th>bookName</th>
+                <th>price</th>
+                <th>quantity</th>
+            </thead>
+        </table>
+        <label for="name">Enter Your Name : </label>
+        <input type="text" name="name" id="name" value=""><br>
+        <label for="email">Enter Your Email : </label>
+        <input type="email" name="email" id="email" value=""><br>
+        <label for="mobile">Enter Your Mobile Number : </label>
+        <input type="text" name="mobileNumber" id="mobileNumber" value=""><br>
+       
+        <button type="button" onclick="orderItems();" class="btn btn-success">Order</button>
+        <button type="button" class="btn btn-danger">Clear</button>
+
+    </div>
+    <div class="container">
+        <h1>ORDER CONFIRMATION</h1>
+       <span>Customer Name : <p id="cusName"></p></span> 
+       <span>Customer Email : <p id="cusEmail"></p></span>
+       <span>Customer mobileNumber : <p id="cusMobileNumber"></p></span> 
+
+       <h1>TABLE</h1>
+        <table id="receivedDataList">
+            <thead>
+                <th>authorName</th>
+                <th>bookName</th>
+                <th>price</th>
+                <th>quantity</th>
+            </thead>
+        </table>
+        <tr class="float-right">Total Cost : <p id="totalCost"></p></tr>
+       
+    </div>
+
+
     <script src="./Books/book.js"></script>
     <script src="./Books/index.js"></script>
 </body>
