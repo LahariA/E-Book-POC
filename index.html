@@ -4,91 +4,100 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="https://unpkg.com/toaster-js/umd.js"></script>
+    <link rel="stylesheet" href="mystyle.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./Books/index.css" />
     <style>
-        table,
-        th,
-        td {
-            font: 17px Calibri;
-            border: solid 1px #DDD;
-            border-collapse: collapse;
-            padding: 2px 3px;
-            text-align: center;
-            margin: 10px 0;
-        }
 
-        th {
-            font-weight: bold;
-        }
     </style>
 </head>
 
 <body>
+ 
     <h1 class="text-center">E-BOOK MANAGEMENT</h1>
-    <!-- action="./displayTable.html" -->
-    <div class="container">
+    <div class="container firstScreen pt-4 text-center shadow p-3 mb-5">
         <form>
-            <label>Book List:</label>
-            <select id="book" name="book" onchange="disable(this.value)">
-                <option value="">==select==</option>
-            </select><br><br>
-            <p>OR</p><br><br>
-            <h2>Search by title or authorName</h2>
+            <div class="form-group">
 
-            <input type="text" id="titleorAuthor"  onkeypress="disable(this.value)" onkeydown="disable(this.value)">
-            <button type="button" class="btn btn-primary" onclick="search();" id="searchId">Search</button>
+                <label><b>Choose an Author:</b></label>
+                <select id="book" name="book" onchange="disable(this.value)">
+                    <option value="" class="text-center">--- select ---</option>
+                </select>
+            </div>
+            <p>OR</p>
+            <div class="form-group">
 
-            <button type="reset" class="btn btn-secondary" title="Click to clear values">Clear</button>
+                <label><b>Search by Title or Author : </b></label>
+
+                <input type="text" id="titleorAuthor" onkeypress="disable(this.value)" onkeydown="disable(this.value)"
+                    placeholder="Title or Author">
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-success" onclick="search();" id="searchId">Search</button>
+
+                <button type="reset" class="btn btn-danger ml-3" title="Click to clear values">Clear</button>
+            </div>
         </form>
     </div>
 
 
-    <div class="container" id="myDIV">
+    <div class="container firstScreen mt-4 shadow p-3 mb-5" id="myDIV">
         <form>
-        <h1>TABLE</h1>
-        <table id="tableId">
-            <thead>
-                <th>check</th>
-                <th>authorName</th>
-                <th>bookName</th>
-                <th>price</th>
-                <th>quantity</th>
-            </thead>
-        </table>
-        <label for="name">Enter Your Name : </label>
-        <input type="text" name="name" id="name" value=""><br>
-        <label for="email">Enter Your Email : </label>
-        <input type="email" name="email" id="email" value=""><br>
-        <label for="mobile">Enter Your Mobile Number : </label>
-        <input type="text" name="mobileNumber" id="mobileNumber" value=""><br>
+            <h1 class="text-center">Book Records</h1>
+            <table id="tableId" class="table table-dark">
+                <thead>
+                    <th>CHECK</th>
+                    <th>AUTHOR </th>
+                    <th>TITLE</th>
+                    <th>PRICE</th>
+                    <th>QUANTITY</th>
+                </thead>
+            </table>
+            <div class="form-group">
+                <label for="name"><b>Name : </b></label>
+                <input type="text" name="name" id="name" value="" placeholder="Enter  your name here"><br>
+            </div>
+            <div class="form-group">
+                <label for="email"><b> Email : </b></label>
+                <input type="email" name="email" id="email" value="" placeholder="Enter  your Email here"><br>
+            </div>
 
-        <button type="button" id="orderId" onclick="orderItems();" class="btn btn-success" >Order</button>
-        <button type="reset" class="btn btn-danger" onclick="disableOrderButton();"  title="Click to clear values">Clear</button>
-    </form>
+            <div class="form-group">
+                <label for="mobile"><b> Mobile Number :</b> </label>
+                <input type="text" name="mobileNumber" id="mobileNumber" value=""
+                    placeholder="Enter  your MobileNumber here"><br>
+            </div>
+            <div class="form-group">
+                <button type="button" id="orderId" onclick="orderItems();" class="btn btn-success ">Order</button>
+                <button type="reset" class="btn btn-danger ml-3" onclick="disableOrderButton();"
+                    title="Click to clear values">Clear</button>
+            </div>
+        </form>
     </div>
-    <div class="container" id="customerInfo">
-        <h1>ORDER CONFIRMATION</h1>
-        <span>Customer Name : <p id="cusName"></p></span>
-        <span>Customer Email : <p id="cusEmail"></p></span>
-        <span>Customer mobileNumber : <p id="cusMobileNumber"></p></span>
+    <div class="container firstScreen mt-4 shadow p-3 mb-5" id="customerInfo">
+        <h1 class="text-center">ORDER CONFIRMATION</h1>
+        <p> <b>Customer Name : </b><i id="cusName"></i></p>
+        <p><b>Customer Email : </b><i id="cusEmail"></i></p>
+        <p><b>Customer mobileNumber : </b> <i id="cusMobileNumber"></i></p>
 
-        <h1>TABLE</h1>
-        <table id="receivedDataList">
+      
+        <table id="receivedDataList" class="table table-dark">
             <thead>
-                <th>authorName</th>
-                <th>bookName</th>
-                <th>price</th>
-                <th>quantity</th>
-            </thead>
+                <th>AUTHOR </th>
+                <th>TITLE</th>
+                <th>PRICE</th>
+                <th>QUANTITY</th>
+            </thead>  
         </table>
-        <tr class="float-right">Total Cost : <p id="totalCost"></p>
-        </tr>
-
+        <p class="text-right">Total Cost :<span  id="totalCost"></span></p>
+           
+   
+        
+        
     </div>
 
     <div id="snackbar">Record Not Found ..</div>
