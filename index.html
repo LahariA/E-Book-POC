@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="mystyle.css">
+    <link rel="stylesheet" href="inddex.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./Books/index.css" />
     <style>
-
     </style>
 </head>
-
 <body>
- 
     <h1 class="text-center">E-BOOK MANAGEMENT</h1>
+
     <div class="container firstScreen pt-4 text-center shadow p-3 mb-5">
         <form>
             <div class="form-group">
-
                 <label><b>Choose an Author:</b></label>
                 <select id="book" name="book" onchange="disable(this.value)">
                     <option value="" class="text-center">--- select ---</option>
@@ -30,10 +25,8 @@
             </div>
             <p>OR</p>
             <div class="form-group">
-
                 <label><b>Search by Title or Author : </b></label>
-
-                <input type="text" id="titleorAuthor" onkeypress="disable(this.value)" onkeydown="disable(this.value)"
+                <input type="text" id="titleorAuthor" onkeyup="disable(this.value)" onkeydown="disable(this.value)"
                     placeholder="Title or Author">
             </div>
             <div class="form-group">
@@ -44,11 +37,13 @@
         </form>
     </div>
 
+    <div id="snackbar">No Records Found ..</div>
 
     <div class="container firstScreen mt-4 shadow p-3 mb-5" id="myDIV">
         <form>
             <h1 class="text-center">Book Records</h1>
-            <table id="tableId" class="table table-dark">
+            <table id="tableId"
+                class="table table-dark  table-responsive-lg table-responsive-md table-responsive-sm table-responsive-xs">
                 <thead>
                     <th>CHECK</th>
                     <th>AUTHOR </th>
@@ -57,54 +52,61 @@
                     <th>QUANTITY</th>
                 </thead>
             </table>
-            <div class="form-group">
-                <label for="name"><b>Name : </b></label>
-                <input type="text" name="name" id="name" value="" placeholder="Enter  your name here"><br>
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 "><b>Name : </b></label>
+                <div  class="col-sm-10">
+                <input type="text" name="name" id="name" value="" placeholder="Enter your name here"><br>
+                <p id="validationName" class="text-danger"></p>
             </div>
-            <div class="form-group">
-                <label for="email"><b> Email : </b></label>
-                <input type="email" name="email" id="email" value="" placeholder="Enter  your Email here"><br>
             </div>
-
-            <div class="form-group">
-                <label for="mobile"><b> Mobile Number :</b> </label>
+            <div class="form-group row">
+                <label for="email"  class="col-sm-2"><b> Email : </b></label>
+                <div  class="col-sm-10">
+                <input type="email" name="email" id="email" value="" placeholder="Enter your Email here"><br>
+                <p id="emailValidation" class="text-danger"></p>
+            </div>
+            </div>
+            <div class="form-group row">
+                <label for="mobile" class="col-sm-2"><b> Mobile Number :</b> </label>
+                <div  class="col-sm-10">
                 <input type="text" name="mobileNumber" id="mobileNumber" value=""
-                    placeholder="Enter  your MobileNumber here"><br>
+                    placeholder="Enter your MobileNumber here" pattern="[789][0-9]{9}"><br>
+                <p id="mobileNumberValidation" class="text-danger"></p>
+            </div>
             </div>
             <div class="form-group">
                 <button type="button" id="orderId" onclick="orderItems();" class="btn btn-success ">Order</button>
-                <button type="reset" class="btn btn-danger ml-3" onclick="disableOrderButton();"
-                    title="Click to clear values">Clear</button>
+                <button type="reset" class="btn btn-danger ml-3" title="Click to clear values">Clear</button>
             </div>
         </form>
     </div>
+
     <div class="container firstScreen mt-4 shadow p-3 mb-5" id="customerInfo">
         <h1 class="text-center">ORDER CONFIRMATION</h1>
-        <p> <b>Customer Name : </b><i id="cusName"></i></p>
-        <p><b>Customer Email : </b><i id="cusEmail"></i></p>
-        <p><b>Customer mobileNumber : </b> <i id="cusMobileNumber"></i></p>
-
-      
-        <table id="receivedDataList" class="table table-dark">
+        <div class="form-group row">
+        <p class="text-justify"> <b  class="col-sm-7">Customer Name : </b><i id="cusName"  class="col-sm-5"></i></p>
+        </div>
+        <div class="form-group row">
+        <p class="text-justify"><b  class="col-sm-7">Customer Email : </b><i id="cusEmail"  class="col-sm-5"></i></p>
+        </div>
+        <div class="form-group row">
+        <p class="text-justify"><b  class="col-sm-3">Customer mobileNumber : </b> <i id="cusMobileNumber"  class="col-sm-9"></i></p>
+        </div>
+        <table id="receivedDataList"
+            class="table table-dark  table-responsive-lg table-responsive-md table-responsive-sm table-responsive-xs">
             <thead>
                 <th>AUTHOR </th>
                 <th>TITLE</th>
                 <th>PRICE</th>
                 <th>QUANTITY</th>
-            </thead>  
+            </thead>
         </table>
-        <p class="text-right">Total Cost :<span  id="totalCost"></span></p>
-           
-   
-        
-        
+        <h4 class="text-right mr-5">Total Cost :<span id="totalCost"></span></h4>
     </div>
 
-    <div id="snackbar">Record Not Found ..</div>
-
+    <div id="record">Please select atleast one Record ..</div>
 
     <script src="./Books/book.js"></script>
     <script src="./Books/index.js"></script>
 </body>
-
 </html>

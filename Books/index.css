@@ -9,8 +9,8 @@
     padding: 16px;
     position: fixed;
     z-index: 1;
-    left: 50%;
-    bottom: 30px;
+    left: 80%;
+    top: 30px;
     font-size: 17px;
   }
   
@@ -19,6 +19,26 @@
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
   }
+#record {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 80%;
+    top: 30px;
+  font-size: 17px;
+}
+#record.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
 .firstScreen{
   border: 1px solid black;
 }
@@ -27,8 +47,8 @@
 }
 body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-image: url('../assets/book-bg.jpg') !important;
+  background-image: url('../assets/book1.png') !important;
   background-size: 100%;
   backdrop-filter: blur(3px);
-  opacity :0.5
+  opacity :2
 }
