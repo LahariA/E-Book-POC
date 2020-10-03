@@ -291,7 +291,10 @@ function removeItem() {
 function removeOldData() {
   for (const receivedList of totalReceivedList) {
     let tablerow = document.getElementById(receivedList.authorName);
-    tablerow.remove();
+    if(tablerow != null){
+      tablerow.remove();
+    }
+    
   }
   count = 0;
 }
