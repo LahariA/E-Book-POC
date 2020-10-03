@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +13,7 @@
     <style>
     </style>
 </head>
+
 <body>
     <h1 class="text-center">E-BOOK MANAGEMENT</h1>
 
@@ -54,43 +56,48 @@
             </table>
             <div class="form-group row">
                 <label for="name" class="col-sm-2 "><b>Name : </b></label>
-                <div  class="col-sm-10">
-                <input type="text" name="name" id="name" value="" placeholder="Enter your name here"><br>
-                <p id="validationName" class="text-danger"></p>
-            </div>
+                <div class="col-sm-10">
+                    <input type="text" name="name" id="name" value="" placeholder="Enter your name here"><br>
+                    <p id="validationName" class="text-danger"></p>
+                </div>
             </div>
             <div class="form-group row">
-                <label for="email"  class="col-sm-2"><b> Email : </b></label>
-                <div  class="col-sm-10">
-                <input type="email" name="email" id="email" value="" placeholder="Enter your Email here"><br>
-                <p id="emailValidation" class="text-danger"></p>
-            </div>
+                <label for="email" class="col-sm-2"><b> Email : </b></label>
+                <div class="col-sm-10">
+                    <input type="email" name="email" id="email" value="" placeholder="Enter your Email here"><br>
+                    <p id="emailValidation" class="text-danger"></p>
+                </div>
             </div>
             <div class="form-group row">
                 <label for="mobile" class="col-sm-2"><b> Mobile Number :</b> </label>
-                <div  class="col-sm-10">
-                <input type="text" name="mobileNumber" id="mobileNumber" value=""
-                    placeholder="Enter your MobileNumber here" pattern="[789][0-9]{9}"><br>
-                <p id="mobileNumberValidation" class="text-danger"></p>
-            </div>
+                <div class="col-sm-10">
+                    <input type="text" name="mobileNumber" id="mobileNumber" value=""
+                        placeholder="Enter your MobileNumber here" pattern="[789][0-9]{9}"><br>
+                    <p id="mobileNumberValidation" class="text-danger"></p>
+                </div>
             </div>
             <div class="form-group">
                 <button type="button" id="orderId" onclick="orderItems();" class="btn btn-success ">Order</button>
                 <button type="reset" class="btn btn-danger ml-3" title="Click to clear values">Clear</button>
             </div>
         </form>
+        <div class="mt-3">
+            <button onclick="topFunction()" id="myBtn" title="Go to top" class="btn btn-primary">Back to select
+                Menu</button>
+        </div>
     </div>
 
     <div class="container firstScreen mt-4 shadow p-3 mb-5" id="customerInfo">
         <h1 class="text-center">ORDER CONFIRMATION</h1>
         <div class="form-group row">
-        <p class="text-justify"> <b  class="col-sm-7">Customer Name : </b><i id="cusName"  class="col-sm-5"></i></p>
+            <p class="text-justify"> <b class="col-sm-7">Customer Name : </b><i id="cusName" class="col-sm-5"></i></p>
         </div>
         <div class="form-group row">
-        <p class="text-justify"><b  class="col-sm-7">Customer Email : </b><i id="cusEmail"  class="col-sm-5"></i></p>
+            <p class="text-justify"><b class="col-sm-7">Customer Email : </b><i id="cusEmail" class="col-sm-5"></i></p>
         </div>
         <div class="form-group row">
-        <p class="text-justify"><b  class="col-sm-3">Customer mobileNumber : </b> <i id="cusMobileNumber"  class="col-sm-9"></i></p>
+            <p class="text-justify"><b class="col-sm-3">Customer mobileNumber : </b> <i id="cusMobileNumber"
+                    class="col-sm-9"></i></p>
         </div>
         <table id="receivedDataList"
             class="table table-dark  table-responsive-lg table-responsive-md table-responsive-sm table-responsive-xs">
@@ -102,6 +109,11 @@
             </thead>
         </table>
         <h4 class="text-right mr-5">Total Cost :<span id="totalCost"></span></h4>
+
+        <div class="mt-3">
+            <button onclick="topFunction()" id="myBtn" title="Go to top" class="btn btn-primary">Back to select
+                Menu</button>
+        </div>
     </div>
 
     <div id="record">Please select atleast one Record ..</div>
@@ -109,4 +121,5 @@
     <script src="./Books/book.js"></script>
     <script src="./Books/index.js"></script>
 </body>
+
 </html>

@@ -10,13 +10,29 @@ let totalList = [];
 let countCheck = 0;
 let totalSearchedData = [];
 let totalReceivedList = [];
+let mybutton = document.getElementById("myBtn");
+
+window.onscroll = function () { scrollFunction() };
+
+function scrollFunction() {
+  if (document.body.scrollTop > 15 || document.documentElement.scrollTop > 15) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
 
 function display() {
-  let x = document.getElementById("myDIV");
-  let y = document.getElementById("customerInfo");
+  const x = document.getElementById("myDIV");
+  const y = document.getElementById("customerInfo");
 
   if (totalSearchedData.length == 0 && totalList.length == 0) {
-    // || totalSearchedData.length == 0) && totalSearchedData == []
+
     x.style.display = "none";
     y.style.display = "none";
   } else {
@@ -43,16 +59,7 @@ function disable(val) {
   }
 }
 
-// function disableOrder(val) {
-//   console.log(val, "checked or not");
-//   if (val.checked == true) {
-//     document.getElementById('orderId').disabled = false;
-//     document.getElementById('orderId').title = '';
-//   } else {
-//     document.getElementById('orderId').disabled = true;
-//     document.getElementById('orderId').title = 'please select atleast one record';
-//   }
-// }
+
 
 disable();
 function getBooks() {
@@ -68,10 +75,10 @@ function getBooks() {
 getBooks();
 
 function get() {
-  var table = document.getElementById('tableId');
+  let table = document.getElementById('tableId');
   totalList = ListOfFilterData;
   if (totalList.length == 0) {
-    var x = document.getElementById("snackbar");
+    let x = document.getElementById("snackbar");
     x.className = "show";
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 1000);
   }
@@ -89,7 +96,7 @@ function get() {
     text.setAttribute('type', 'checkbox');
     text.setAttribute('id', list.bookName);
     text.setAttribute('value', list.bookName);
-    // text.setAttribute("onchange", "disableOrder(this)");
+
 
     text.setAttribute('name', 'book');
     let text1 = document.createTextNode(list.authorName);
@@ -122,9 +129,9 @@ function get() {
     }
     allItems.push(obj);
     valueOfInput = document.getElementById(list.bookName);
-    console.log(valueOfInput.checked, "valueOfInput");
+
   }
-  // console.log(totalList, "unnava");
+
 }
 
 
@@ -133,7 +140,7 @@ function getCustomerData() {
   if (count == 0) {
     totalReceivedList = filObj;
     let receivedDable = document.getElementById('receivedDataList');
-    for (const receivedList of totalReceivedList) {
+    for (let receivedList of totalReceivedList) {
       document.getElementById('cusName').innerHTML = receivedList.name;
       document.getElementById('cusEmail').innerHTML = receivedList.email;
       document.getElementById('cusMobileNumber').innerHTML = receivedList.mobileNumber;
@@ -164,10 +171,10 @@ function getCustomerData() {
       receivedDable.appendChild(tablerow);
       totalPrice += (receivedList.price * receivedList.quality);
     }
-    console.log(totalPrice.toString(), "totalPrice");
+
     document.getElementById('totalCost').innerHTML = totalPrice.toString();
     totalPrice = 0;
-    console.log(totalReceivedList, "totalReceivedList");
+
   }
   count++;
 }
@@ -176,18 +183,16 @@ function search() {
   let totalBooks = getBookList();
   let searchInput = document.getElementById('titleorAuthor').value;
   let selectedOption = document.getElementById('book').value;
-  // console.log(searchInput, "searchInput");
-  // console.log(selectedOption, "selectedOption");
+
   let filteredList = totalBooks.filter(value => {
     return value.authorName == selectedOption || value.bookName == searchInput || value.authorName == searchInput
   });
   ListOfFilterData = filteredList;
 
-  // console.log(ListOfFilterData, "filteredList");
   totalSearchedData.push(ListOfFilterData);
   display();
   get();
-  console.log(filteredList)
+
   return filteredList;
 }
 
@@ -196,7 +201,6 @@ function showrecordNotFound() {
     let y = document.getElementById("record");
     y.className = "show";
     setTimeout(function () { y.className = y.className.replace("show", ""); }, 1000);
-    // countCheck =0;
   }
   else {
     countCheck = 0;
@@ -205,7 +209,7 @@ function showrecordNotFound() {
 
 function orderItems() {
   removeItem();
-  for (const list of allItems) {
+  for (let list of allItems) {
     let inputValue = document.getElementById(list.bookName);
     if (!inputValue.checked) {
       showrecordNotFound();
@@ -221,7 +225,6 @@ function orderItems() {
       if (name == "" || email == "" || mobileNumber == "" || !mobileNumber.match(/^\(?([6-9]{1})\)?[-. ]?([0-9]{5})[-. ]?([0-9]{4})$/
         || !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
       ) {
-        // || quantityValue == ""
         if (name == "") {
           let nameValidation = "Name Required";
           document.getElementById('validationName').innerHTML = nameValidation;
@@ -251,19 +254,13 @@ function orderItems() {
         else {
           document.getElementById('mobileNumberValidation').innerHTML = "";
         }
-        // if (quantityValue == "" ){
-        //   // let quantityValidation = "Quantity Required";
-        //   document.getElementById(list.authodId).innerHTML = "Quantity Required";
-        // }
-        // else{
-        //   document.getElementById(list.authodId).innerHTML = "";
-        // }
+
       }
       else {
         document.getElementById('validationName').innerHTML = "";
         document.getElementById('emailValidation').innerHTML = "";
         document.getElementById('mobileNumberValidation').innerHTML = "";
-        // document.getElementById(list.authodId).innerHTML = "";
+
         let obj = {
           authorName: list.authorName,
           bookName: list.bookName,
@@ -278,7 +275,7 @@ function orderItems() {
         filObj = objectOfOrders;
         display();
         getCustomerData();
-        console.log(objectOfOrders, "orderObject");
+
       }
     }
   }
@@ -289,18 +286,18 @@ function removeItem() {
 }
 
 function removeOldData() {
-  for (const receivedList of totalReceivedList) {
+  for (let receivedList of totalReceivedList) {
     let tablerow = document.getElementById(receivedList.authorName);
-    if(tablerow != null){
+    if (tablerow != null) {
       tablerow.remove();
     }
-    
+
   }
   count = 0;
 }
 
 function removeOldDataOfSearch() {
-  for (const receivedList of totalList) {
+  for (let receivedList of totalList) {
     let tablerow = document.getElementById(receivedList.authorName);
     tablerow.remove();
   }
